@@ -17,7 +17,7 @@ body {
   flex-wrap: wrap;
   width: 300px;
   border: 1px solid #8de7fb;
-  /*box-shadow: 0 0 50px 2px #8de7fb;*/
+  box-shadow: 0 0 50px 2px #8de7fb;
 
 }
 
@@ -29,7 +29,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 32px;
+  font-size: 36px;
   cursor: pointer;
 }
 
