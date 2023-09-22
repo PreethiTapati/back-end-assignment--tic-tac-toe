@@ -1,8 +1,8 @@
 const dom = {
-    num1: document.getElementById('num-one'),
-    num2: document.getElementById('num-two'),
-    btn: document.getElementById('sum'),
-    output: document.getElementById('output'),
+    playerTurn: document.getElementById('playerTurn'),
+    board: document.getElementById('board'),
+    resetBtn: document.getElementById('resetBtn'),
+    cells: document.querySelectorAll('.cell'),
 };
 
 export default dom;

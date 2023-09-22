@@ -1,50 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+  font-family: "Mooli", sans-serif;
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  color: black;
+  height: 100vh; 
+  margin: 0; 
 }
 
-.calculator-container {
-    width: 300px;
-    margin: 100px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+/* Add some style to the game container */
+.cellContainer{
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  border: 1px solid #8de7fb;
+  /*box-shadow: 0 0 50px 2px #8de7fb;*/
+
+}
+
+.cellContainer .cell {
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  border: 3px solid #8de7fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.cell:hover {
+    background-color: #d5ecf4;
+}
+
+/* Add style for the title */
+.title {
     text-align: center;
+    margin-top: 20px;
 }
 
-.input-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-.input-number {
-    width: 45%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-}
-
-.sum-button {
-    background-color: #4caf50;
-    color: white;
+/* Style the Reset button */
+#resetBtn {
+    display: block;
+    margin: 20px auto;
     padding: 10px 20px;
+    background: linear-gradient(20deg, #8de7fb, #ccc);
+    background-color: #dbeef8;
+    color: rgb(6, 6, 6);
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    outline: none;
-}
-
-.sum-button:hover {
-    background-color: #45a049;
-}
-
-.output {
-    margin-top: 15px;
     font-size: 18px;
-    font-weight: bold;
+    border-radius: 5px;
 }
+
+
+
