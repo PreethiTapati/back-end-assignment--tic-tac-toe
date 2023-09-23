@@ -2,66 +2,40 @@ import dom from '../dom.js';
 import data from '../data.js';
 import selectWinner from '../utils/selectWinner.js';
 
-// Add a game over flag to track the game's state
-let gameOver = false;
-
 const playerTurnHandler = (e) => {
-  const cellEl = e.target;
-  const id = cellEl.id;
+    const cellEl = e.target;
+    const id = cellEl.id;
 
-  // Check if cell is already marked or if the game is over
-  if (cellEl.innerText || gameOver) {
-    return;
-  }
+    // Check if the cell is already marked or if the game has ended
+    if (cellEl.innerText || dom.turnInfo.innerHTML === `${data.turn} won!`) {
+        return;
+    }
 
-  markCell(cellEl);
-  updateGameBoard(id);
-  const winResult = checkForWinner();
+    cellEl.classList.add(data.turn);
+    cellEl.innerHTML = data.turn;
 
-  if (winResult !== null) {
-    displayWinner(winResult);
-    // Set the game over flag to true to prevent further moves
-    gameOver = true;
-    return;
-  }
+    // Update the game board with the player's move
+    data.playBoard[id] = data.turn;
 
-  togglePlayer();
-  updatePlayerTurn();
-};
+    // Check for a winner using the checkWinner utility function
+    const winResult = selectWinner(
+        document.querySelectorAll(`.${data.turn}`),
+        data.winCombinations,
+        data.turn,
+        data.playBoard,
+    );
 
-// Mark the cell with the current player's mark
-const markCell = (cellEl) => {
-  cellEl.classList.add(data.turn);
-  cellEl.innerHTML = data.turn;
-};
+    // If there's a winner or it's a draw, update the turn information
+    if (winResult !== null) {
+        dom.turnInfo.innerHTML = winResult;
+        return;
+    }
 
-// Update internal game board data
-const updateGameBoard = (id) => {
-  data.playBoard[id] = data.turn;
-};
+    // Switch the turn to the other player (X to O or vice versa)
+    data.turn === 'X' ? (data.turn = 'O') : (data.turn = 'X');
 
-// Check for winner or draw
-const checkForWinner = () => {
-  return selectWinner(
-    document.querySelectorAll(`.${data.turn}`),
-    data.winCombinations,
-    data.turn,
-    data.playBoard
-  );
-};
-
-const displayWinner = (winResult) => {
-  dom.playerTurn.innerHTML = winResult;
-};
-
-// Toggle current player
-const togglePlayer = () => {
-  data.turn = (data.turn === 'O') ? 'X' : 'O';
-};
-
-// Update UI with new player's turn
-const updatePlayerTurn = () => {
-  dom.playerTurn.innerHTML = `${data.turn}, now it's your turn`;
+    // Update the turn information
+    dom.turnInfo.innerHTML = data.turn + "'s turn";
 };
 
 export default playerTurnHandler;
